@@ -1,230 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PH4NTOM Optimizations - Professional PC and Windows optimization services for better FPS, lower latency, and a smoother system.">
-    <title>PH4NTOM Optimizations</title>
+
+    <title>PH4NTOM Premium Store</title>
+
+    <meta name="description"
+          content="Premium Digital Services, PC Optimization and Discord Solutions.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Stylesheet -->
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-    <!-- Decorative animated grid background -->
-    <div class="grid-bg" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-inner">
-            <a href="#home" class="logo">PH4NTOM<span class="cursor">_</span></a>
+    <!-- Background -->
+    <div class="background-grid"></div>
 
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
 
-            <div class="nav-links" id="navLinks">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#packages" class="nav-link">Packages</a>
-                <a href="#reviews" class="nav-link">Reviews</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+
+            PH4NTOM
+
         </div>
+
+
+        <div class="nav-links">
+
+            <a href="#services">Services</a>
+
+            <a href="#reviews">Reviews</a>
+
+            <a href="#faq">FAQ</a>
+
+            <a href="#contact">Contact</a>
+
+        </div>
+
     </nav>
 
-    <!-- Hero / Welcome -->
-    <header id="home" class="hero">
-        <div class="hero-inner">
-            <p class="eyebrow">[ 00 // PC_OPTIMIZATION ]</p>
-            <h1 class="hero-title">Your PC,<br><span class="glow-text">Unleashed.</span></h1>
-            <p class="hero-sub">
-                Advanced optimization packages built for higher FPS, lower latency,
-                and a system that finally runs the way it should.
+
+
+    <!-- HERO -->
+    <header class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="small-text">
+
+                WELCOME TO
+
             </p>
-            <div class="hero-actions">
-                <a href="#services" class="btn btn-primary">View Services</a>
-                <a href="#packages" class="btn btn-ghost">See Pricing</a>
+
+
+            <h1>
+
+                PH4NTOM
+
+                <span>
+
+                    Premium Store
+
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Premium Digital Services.
+
+                Built For Performance.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#services"
+                   class="primary-button">
+
+                    Explore Services
+
+                </a>
+
+
+                <a href="#contact"
+                   class="secondary-button">
+
+                    Contact
+
+                </a>
+
             </div>
+
         </div>
-        <a href="#services" class="scroll-cue" aria-label="Scroll to services">
-            <span></span>
-        </a>
+
     </header>
 
-    <main>
-        <!-- Services -->
-        <section id="services" class="section">
-            <div class="section-head reveal">
-                <p class="eyebrow">[ 01 // SERVICES ]</p>
-                <h2>Our Services</h2>
-                <p class="section-sub">Choose the level of optimization that fits your setup.</p>
-            </div>
 
-            <div class="card-grid">
-                <article class="card reveal">
-                    <h3>Basic Optimization</h3>
-                    <p class="price"><span>$15</span><small>one-time</small></p>
-                    <p class="card-desc">Safe, effective tweaks that clean up and speed up everyday use.</p>
-                    <ul class="feature-list">
-                        <li>Startup &amp; background app cleanup</li>
-                        <li>Driver &amp; Windows update check</li>
-                        <li>Storage cleanup &amp; debloat</li>
-                        <li>Privacy &amp; telemetry tweaks</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-outline">Get Started</a>
-                </article>
 
-                <article class="card card-featured reveal">
-                    <p class="badge">Most Popular</p>
-                    <h3>Premium Optimization</h3>
-                    <p class="price"><span>$35</span><small>one-time</small></p>
-                    <p class="card-desc">Full system, gaming, and network tuning for maximum performance.</p>
-                    <ul class="feature-list">
-                        <li>Everything in Basic</li>
-                        <li>Advanced registry &amp; service tuning</li>
-                        <li>Gaming-focused power &amp; latency tweaks</li>
-                        <li>Network optimization for lower ping</li>
-                        <li>Custom performance profile</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary">Get Started</a>
-                </article>
 
-                <article class="card reveal">
-                    <h3>Discord Setup</h3>
-                    <p class="price"><span>$20</span><small>one-time</small></p>
-                    <p class="card-desc">A clean, organized Discord server built for your community.</p>
-                    <ul class="feature-list">
-                        <li>Channel &amp; category structure</li>
-                        <li>Roles &amp; permission setup</li>
-                        <li>Bot setup &amp; configuration</li>
-                        <li>Branding touches</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-outline">Get Started</a>
-                </article>
-            </div>
-        </section>
+    <!-- SERVICES -->
+    <section
+        class="section zoom-section"
+        id="services">
 
-        <!-- Windows Packages (Win10 / Win11 toggle) -->
-        <section id="packages" class="section">
-            <div class="section-head reveal">
-                <p class="eyebrow">[ 02 // PACKAGES ]</p>
-                <h2>Windows Optimization Packages</h2>
-                <p class="section-sub">Pricing tailored to your operating system.</p>
-            </div>
+        <div class="section-title">
 
-            <div class="os-toggle reveal" role="tablist" aria-label="Choose your Windows version">
-                <button class="os-btn active" data-os="win10" role="tab" aria-selected="true">Windows 10</button>
-                <button class="os-btn" data-os="win11" role="tab" aria-selected="false">Windows 11</button>
-            </div>
+            <p>SERVICES</p>
 
-            <div class="os-panel active" data-panel="win10">
-                <div class="card-grid">
-                    <article class="card reveal">
-                        <h3>Windows 10 — Basic</h3>
-                        <p class="price"><span>$15</span><small>one-time</small></p>
-                        <p class="card-desc">Core performance and debloat tweaks suited to Windows 10.</p>
-                    </article>
-                    <article class="card card-featured reveal">
-                        <p class="badge">Best Value</p>
-                        <h3>Windows 10 — Premium</h3>
-                        <p class="price"><span>$35</span><small>one-time</small></p>
-                        <p class="card-desc">Deep system, gaming, and network optimization for Windows 10.</p>
-                    </article>
-                </div>
-            </div>
+            <h2>
 
-            <div class="os-panel" data-panel="win11">
-                <div class="card-grid">
-                    <article class="card reveal">
-                        <h3>Windows 11 — Basic</h3>
-                        <p class="price"><span>$18</span><small>one-time</small></p>
-                        <p class="card-desc">Core performance and debloat tweaks adapted for Windows 11.</p>
-                    </article>
-                    <article class="card card-featured reveal">
-                        <p class="badge">Best Value</p>
-                        <h3>Windows 11 — Premium</h3>
-                        <p class="price"><span>$40</span><small>one-time</small></p>
-                        <p class="card-desc">Deep system, gaming, and network optimization for Windows 11.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+                What We Offer
 
-        <!-- Reviews -->
-        <section id="reviews" class="section">
-            <div class="section-head reveal">
-                <p class="eyebrow">[ 03 // REVIEWS ]</p>
-                <h2>Customer Reviews</h2>
-                <p class="section-sub">Trusted by gamers and PC enthusiasts.</p>
-            </div>
+            </h2>
 
-            <div class="card-grid">
-                <article class="card reveal">
-                    <p class="stars">★★★★★</p>
-                    <p class="card-desc">Noticed a real difference in FPS and load times within minutes of the tweaks finishing.</p>
-                    <p class="reviewer">— Alex R.</p>
-                </article>
-                <article class="card reveal">
-                    <p class="stars">★★★★★</p>
-                    <p class="card-desc">My PC felt brand new again. Fast, simple, and explained clearly the whole way.</p>
-                    <p class="reviewer">— Jordan M.</p>
-                </article>
-                <article class="card reveal">
-                    <p class="stars">★★★★★</p>
-                    <p class="card-desc">Great communication and the Discord setup looks incredibly clean.</p>
-                    <p class="reviewer">— Sam T.</p>
-                </article>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq" class="section">
-            <div class="section-head reveal">
-                <p class="eyebrow">[ 04 // FAQ ]</p>
-                <h2>Frequently Asked Questions</h2>
-            </div>
-
-            <div class="faq-list reveal">
-                <details class="faq-item">
-                    <summary>Are the optimizations safe?</summary>
-                    <p>Yes. A restore point is recommended before starting, and every tweak is designed to be safe and reversible.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>Do you provide support after purchase?</summary>
-                    <p>Yes, support is available after purchase if you have any questions or run into issues.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>What's the difference between the Windows 10 and Windows 11 packages?</summary>
-                    <p>Each package is tuned for the specific settings and quirks of that operating system, so you get optimizations relevant to your setup.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>How long does the process take?</summary>
-                    <p>Most optimizations are completed within 30–60 minutes, depending on the package and your system.</p>
-                </details>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer / Contact -->
-    <footer id="contact" class="footer">
-        <div class="footer-inner">
-            <a href="#home" class="logo">PH4NTOM<span class="cursor">_</span></a>
-            <p class="footer-text">Ready to optimize your system? Reach out and let's get started.</p>
-            <div class="footer-links">
-                <a href="#">Discord</a>
-                <a href="#">Email</a>
-            </div>
-            <p class="footer-copy">© 2026 PH4NTOM Optimizations. All Rights Reserved.</p>
         </div>
+
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>
+
+                    PC Optimization
+
+                </h3>
+
+                <p>
+
+                    Advanced tweaks and optimization for better FPS and performance.
+
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+
+                    Discord Setup
+
+                </h3>
+
+                <p>
+
+                    Professional server creation, channels and permissions.
+
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+
+                    Premium Digital Services
+
+                </h3>
+
+                <p>
+
+                    High-quality digital solutions and custom setups.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <!-- REVIEWS -->
+    <section
+        class="section zoom-section"
+        id="reviews">
+
+
+        <div class="section-title">
+
+            <p>REVIEWS</p>
+
+            <h2>
+
+                Customer Feedback
+
+            </h2>
+
+        </div>
+
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>
+
+                    ★★★★★
+
+                </h3>
+
+                <p>
+
+                    Excellent service and amazing communication.
+
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+
+                    ★★★★★
+
+                </h3>
+
+                <p>
+
+                    Fast delivery and premium quality.
+
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+
+                    ★★★★★
+
+                </h3>
+
+                <p>
+
+                    Highly recommended.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <!-- FAQ -->
+    <section
+        class="section zoom-section"
+        id="faq">
+
+
+        <div class="section-title">
+
+            <p>
+
+                FAQ
+
+            </p>
+
+            <h2>
+
+                Frequently Asked Questions
+
+            </h2>
+
+        </div>
+
+
+        <div class="faq-container">
+
+            <div class="faq-box">
+
+                <h3>
+
+                    Are the optimizations safe?
+
+                </h3>
+
+                <p>
+
+                    Yes. All tweaks are tested and designed to be safe.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="faq-box">
+
+                <h3>
+
+                    Do you provide support?
+
+                </h3>
+
+                <p>
+
+                    Yes, support is available after purchase.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="faq-box">
+
+                <h3>
+
+                    How long does delivery take?
+
+                </h3>
+
+                <p>
+
+                    Usually within a few hours.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- CONTACT -->
+    <section
+        class="section zoom-section"
+        id="contact">
+
+        <div class="section-title">
+
+            <p>
+
+                CONTACT
+
+            </p>
+
+            <h2>
+
+                Connect With Us
+
+            </h2>
+
+        </div>
+
+
+
+        <div class="cards">
+
+
+            <div class="card">
+
+                <h3>
+
+                    Discord
+
+                </h3>
+
+                <p>
+
+                    Join our community.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <h3>
+
+                    YouTube
+
+                </h3>
+
+                <p>
+
+                    Tutorials and updates.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <h3>
+
+                    Email
+
+                </h3>
+
+                <p>
+
+                    Business inquiries and support.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h2>
+
+            PH4NTOM Premium Store
+
+        </h2>
+
+        <p>
+
+            © 2026 All Rights Reserved.
+
+        </p>
+
     </footer>
 
+
+
+    <!-- JS -->
     <script src="script.js"></script>
+
+
 </body>
 </html>
