@@ -1,75 +1,281 @@
-/* =============================================
-   PH4NTOM Optimizations — Scripts
-   ============================================= */
+/* ==========================================
+   PH4NTOM Premium Store
+   Script
+========================================== */
 
-/* ---- Mobile nav toggle ---- */
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
 
-navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', isOpen);
+/* ---------- Zoom Sections ---------- */
+
+const sections = document.querySelectorAll(".zoom-section");
+
+const observer = new IntersectionObserver(
+
+(entries) => {
+
+entries.forEach((entry) => {
+
+if (entry.isIntersecting) {
+
+entry.target.classList.add("show");
+
+}
+
 });
 
-// Close mobile menu after clicking a link
-navLinks.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-    });
+},
+
+{
+threshold:0.2
+}
+
+);
+
+sections.forEach((section) => {
+
+observer.observe(section);
+
 });
 
-/* ---- Highlight active nav link based on scroll position ---- */
-const sections = document.querySelectorAll('section[id], header[id]');
-const navAnchors = document.querySelectorAll('.nav-link');
 
-const sectionObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navAnchors.forEach((a) => {
-                    a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-                });
-            }
-        });
-    },
-    { rootMargin: '-50% 0px -50% 0px' }
+
+/* ---------- Active Navbar ---------- */
+
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+
+let current = "";
+
+document.querySelectorAll("section").forEach((section) => {
+
+const sectionTop = section.offsetTop;
+
+const sectionHeight = section.clientHeight;
+
+if (
+
+pageYOffset >= sectionTop - 300
+
+) {
+
+current = section.getAttribute("id");
+
+}
+
+});
+
+navLinks.forEach((link) => {
+
+link.classList.remove("active");
+
+if (
+
+link.getAttribute("href") === "#" + current
+
+) {
+
+link.classList.add("active");
+
+}
+
+});
+
+});
+
+
+
+/* ---------- Smooth Scroll ---------- */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+anchor.addEventListener("click", function(e) {
+
+e.preventDefault();
+
+const target = document.querySelector(
+
+this.getAttribute("href")
+
 );
 
-sections.forEach((section) => sectionObserver.observe(section));
+target.scrollIntoView({
 
-/* ---- Fade-in reveal on scroll ---- */
-const revealObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    },
-    { threshold: 0.15 }
+behavior:"smooth"
+
+});
+
+});
+
+});
+
+
+
+/* ---------- Hero Title Animation ---------- */
+
+window.addEventListener("load", () => {
+
+const heroTitle = document.querySelector(".hero h1");
+
+heroTitle.animate(
+
+[
+
+{
+
+opacity:0,
+
+transform:"scale(.7)"
+
+},
+
+{
+
+opacity:1,
+
+transform:"scale(1)"
+
+}
+
+],
+
+{
+
+duration:1800,
+
+easing:"ease-out"
+
+}
+
 );
 
-document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+});
 
-/* ---- Windows 10 / 11 package toggle ---- */
-const osButtons = document.querySelectorAll('.os-btn');
-const osPanels = document.querySelectorAll('.os-panel');
 
-osButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        osButtons.forEach((b) => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
 
-        const target = btn.dataset.os;
-        osPanels.forEach((panel) => {
-            panel.classList.toggle('active', panel.dataset.panel === target);
-        });
-    });
+/* ---------- Mouse Glow ---------- */
+
+const glow = document.createElement("div");
+
+glow.style.position = "fixed";
+
+glow.style.width = "350px";
+
+glow.style.height = "350px";
+
+glow.style.borderRadius = "50%";
+
+glow.style.pointerEvents = "none";
+
+glow.style.background =
+
+"radial-gradient(circle, rgba(255,255,255,.08), transparent 70%)";
+
+glow.style.transform = "translate(-50%,-50%)";
+
+glow.style.zIndex = "-1";
+
+glow.style.transition = "0.15s linear";
+
+document.body.appendChild(glow);
+
+document.addEventListener("mousemove", (e) => {
+
+glow.style.left = e.clientX + "px";
+
+glow.style.top = e.clientY + "px";
+
+});
+
+
+
+/* ---------- Navbar Blur On Scroll ---------- */
+
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+
+if(window.scrollY > 100){
+
+navbar.style.background = "rgba(0,0,0,.7)";
+
+navbar.style.backdropFilter = "blur(20px)";
+
+}
+
+else{
+
+navbar.style.background = "rgba(0,0,0,.3)";
+
+}
+
+});
+
+
+
+/* ---------- Parallax Hero ---------- */
+
+window.addEventListener("scroll", () => {
+
+const hero = document.querySelector(".hero");
+
+let value = window.scrollY;
+
+hero.style.transform =
+
+`scale(${1 - value * 0.00015})`;
+
+});
+
+
+
+/* ---------- Fade Cards ---------- */
+
+const cards = document.querySelectorAll(".card");
+
+cards.forEach((card, index) => {
+
+card.style.opacity = "0";
+
+card.style.transform = "translateY(50px)";
+
+card.style.transition =
+
+"all .8s ease";
+
+card.style.transitionDelay =
+
+`${index * .15}s`;
+
+});
+
+const cardObserver = new IntersectionObserver(
+
+(entries) => {
+
+entries.forEach((entry) => {
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity = "1";
+
+entry.target.style.transform = "translateY(0px)";
+
+}
+
+});
+
+},
+
+{
+
+threshold:0.15
+
+}
+
+);
+
+cards.forEach((card) => {
+
+cardObserver.observe(card);
+
 });
