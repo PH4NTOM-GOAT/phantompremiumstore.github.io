@@ -1,345 +1,356 @@
+cat > /mnt/user-data/outputs/index.html << 'HTMLEOF'
 <!DOCTYPE html>
-<!--
-╔══════════════════════════════════════════════════════╗
-║              FILE 1 — index.html                     ║
-║         PH4NTOM Optimizations — Structure            ║
-╚══════════════════════════════════════════════════════╝
--->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PH4NTOM Optimizations — Professional PC and Windows optimization services for better FPS, lower latency, and a smoother system.">
-    <title>PH4NTOM Optimizations</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PH4NTOM Optimizations</title>
+  <meta name="description" content="Professional PC optimization — higher FPS, lower latency, faster boot. Windows 10 & 11 packages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <!-- ─────────────────────────────────────
-         INTRO OVERLAY — shows "ZOOM" on load,
-         zooms in and dissolves into the site
-    ───────────────────────────────────────── -->
-    <div id="intro" class="intro-overlay" aria-hidden="true">
-        <div class="intro-content">
-            <span class="intro-word">ZOOM</span>
-            <span class="intro-sub">[ PH4NTOM // LOADING ]</span>
-        </div>
+  <!-- ░░ BACKGROUND LAYERS ░░ -->
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <canvas id="particles"></canvas>
+    <div class="noise"></div>
+  </div>
+
+  <!-- ░░ NAV ░░ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#home" class="logo" aria-label="PH4NTOM home">
+        <span class="logo-ph">PH4NTOM</span><span class="logo-cursor">_</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home"     class="nl active">Home</a>
+        <a href="#services" class="nl">Services</a>
+        <a href="#packages" class="nl">Packages</a>
+        <a href="#reviews"  class="nl">Reviews</a>
+        <a href="#faq"      class="nl">FAQ</a>
+        <a href="#contact"  class="nl cta-nav">Get Started</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
 
-    <!-- ─────────────────────────────────────
-         PAGE WRAPPER — receives zoom-flash
-         animation when a nav link is clicked
-    ───────────────────────────────────────── -->
-    <div id="pageWrapper">
-
-        <!-- Decorative animated grid -->
-        <div class="grid-bg" aria-hidden="true"></div>
-
-        <!-- ─────────────────────────────────
-             NAVBAR — logo left, links right
-        ──────────────────────────────────── -->
-        <nav class="navbar" id="navbar">
-            <div class="nav-inner">
-                <a href="#home" class="logo">PH4NTOM<span class="cursor">_</span></a>
-
-                <!-- Hamburger (mobile only) -->
-                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-                    <span></span><span></span><span></span>
-                </button>
-
-                <!-- Nav links — top-right of page -->
-                <div class="nav-links" id="navLinks">
-                    <a href="#services" class="nav-link zoom-nav">Services</a>
-                    <a href="#packages" class="nav-link zoom-nav">Packages</a>
-                    <a href="#reviews"  class="nav-link zoom-nav">Reviews</a>
-                    <a href="#faq"      class="nav-link zoom-nav">FAQ</a>
-                    <a href="#contact"  class="nav-link zoom-nav">Contact</a>
-                </div>
-            </div>
-        </nav>
-
-        <!-- ─────────────────────────────────
-             HERO — appears after intro ends.
-             Shows Phantom Store + Premium tiers
-        ──────────────────────────────────── -->
-        <header id="home" class="hero zoom-section">
-            <div class="hero-inner">
-                <p class="eyebrow">[ 00 // PC_OPTIMIZATION ]</p>
-                <h1 class="hero-title">Your PC,<br><span class="glow-text">Unleashed.</span></h1>
-                <p class="hero-sub">
-                    Advanced optimization packages built for higher FPS,
-                    lower latency, and a system that finally runs the way it should.
-                </p>
-
-                <!-- Store tier cards -->
-                <div class="store-cards">
-                    <div class="store-card">
-                        <p class="store-tag">[ STANDARD ]</p>
-                        <h2 class="store-name">Phantom Store</h2>
-                        <p class="store-desc">
-                            Core PC optimization. Faster boot, cleaner system,
-                            better performance — all in one session.
-                        </p>
-                        <a href="#packages" class="btn btn-ghost zoom-nav">Explore Packages</a>
-                    </div>
-
-                    <div class="store-card store-card-premium">
-                        <div class="premium-badge">PREMIUM</div>
-                        <p class="store-tag">[ FULL SUITE ]</p>
-                        <h2 class="store-name glow-text">Phantom Premium Store</h2>
-                        <p class="store-desc">
-                            Deep system, gaming, and network optimization.
-                            Maximum performance, minimum compromise.
-                        </p>
-                        <a href="#packages" class="btn btn-primary zoom-nav">Get Premium</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scroll indicator -->
-            <a href="#services" class="scroll-cue zoom-nav" aria-label="Scroll to services">
-                <span></span>
-            </a>
-        </header>
-
-        <main>
-
-            <!-- ─────────────────────────────────
-                 SERVICES — first section after hero
-            ──────────────────────────────────── -->
-            <section id="services" class="section zoom-section">
-                <div class="section-head reveal">
-                    <p class="eyebrow">[ 01 // SERVICES ]</p>
-                    <h2>Our Services</h2>
-                    <p class="section-sub">Tap a card to see full details and pricing.</p>
-                </div>
-
-                <div class="card-grid">
-                    <article class="card service-card reveal" data-service="windows-optimization" tabindex="0" role="button" aria-haspopup="dialog">
-                        <div class="service-icon" aria-hidden="true">
-                            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="16" cy="16" r="12"/>
-                                <path d="M16 16 L21 11"/>
-                                <path d="M16 6 V8"/><path d="M16 24 V26"/>
-                                <path d="M6 16 H8"/><path d="M24 16 H26"/>
-                            </svg>
-                        </div>
-                        <h3>Windows Optimization</h3>
-                        <p class="card-desc">Faster boot times, smoother gameplay, and a system tuned for how you actually use it.</p>
-                        <span class="btn btn-outline service-cta">View Details</span>
-                    </article>
-
-                    <article class="card service-card reveal" data-service="discord-setup" tabindex="0" role="button" aria-haspopup="dialog">
-                        <div class="service-icon" aria-hidden="true">
-                            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20.317 8.37a16 16 0 00-3.929-1.219.07.07 0 00-.073.034c-.17.303-.358.698-.49 1.009a14.79 14.79 0 00-4.419 0 9.944 9.944 0 00-.497-1.009.073.073 0 00-.073-.034 15.974 15.974 0 00-3.928 1.22.065.065 0 00-.03.026C4.429 12.037 3.55 15.574 3.991 19.064a.076.076 0 00.029.052 16.028 16.028 0 004.825 2.44.077.077 0 00.084-.028c.37-.508.7-1.044.984-1.607a.073.073 0 00-.04-.102 10.55 10.55 0 01-1.507-.718.073.073 0 01-.007-.122c.101-.076.202-.155.298-.235a.07.07 0 01.073-.01c3.163 1.443 6.59 1.443 9.715 0a.07.07 0 01.074.009c.096.08.197.16.3.236a.073.073 0 01-.006.122c-.482.281-.982.52-1.508.717a.073.073 0 00-.04.103c.288.563.618 1.099.983 1.606a.076.076 0 00.084.028 15.977 15.977 0 004.83-2.44.075.075 0 00.03-.051c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.03-.027z"/>
-                            </svg>
-                        </div>
-                        <h3>Discord Setup</h3>
-                        <p class="card-desc">A clean, organized server with the structure, roles, and bots your community needs.</p>
-                        <span class="btn btn-outline service-cta">View Details</span>
-                    </article>
-
-                    <article class="card service-card reveal" data-service="game-tuning" tabindex="0" role="button" aria-haspopup="dialog">
-                        <div class="service-icon" aria-hidden="true">
-                            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 11h14a5 5 0 0 1 5 5v3a4 4 0 0 1-7 2.6l-0.8-1a3 3 0 0 0-2.4-1.2h-3.6a3 3 0 0 0-2.4 1.2l-0.8 1A4 4 0 0 1 4 19v-3a5 5 0 0 1 5-5z"/>
-                                <path d="M9.5 15.5h3M11 14v3"/>
-                                <circle cx="20" cy="14.5" r="0.6" fill="currentColor" stroke="none"/>
-                                <circle cx="22.5" cy="17" r="0.6" fill="currentColor" stroke="none"/>
-                            </svg>
-                        </div>
-                        <h3>Game Performance Tuning</h3>
-                        <p class="card-desc">In-game settings and driver tweaks dialed in for the best FPS in your favorite titles.</p>
-                        <span class="btn btn-outline service-cta">View Details</span>
-                    </article>
-
-                    <article class="card service-card reveal" data-service="pc-diagnostics" tabindex="0" role="button" aria-haspopup="dialog">
-                        <div class="service-icon" aria-hidden="true">
-                            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="4" y="6" width="24" height="16" rx="2"/>
-                                <path d="M12 26h8"/><path d="M16 22v4"/>
-                                <path d="M10.5 14.5l3 3 6-6.5"/>
-                            </svg>
-                        </div>
-                        <h3>PC Diagnostics &amp; Setup</h3>
-                        <p class="card-desc">A full health check — drivers, hardware, and software all verified and up to date.</p>
-                        <span class="btn btn-outline service-cta">View Details</span>
-                    </article>
-                </div>
-            </section>
-
-            <!-- ─────────────────────────────────
-                 REVIEWS — second section
-            ──────────────────────────────────── -->
-            <section id="reviews" class="section zoom-section">
-                <div class="section-head reveal">
-                    <p class="eyebrow">[ 02 // REVIEWS ]</p>
-                    <h2>Customer Reviews</h2>
-                    <p class="section-sub">Trusted by gamers and PC enthusiasts worldwide.</p>
-                </div>
-
-                <div class="card-grid">
-                    <article class="card reveal">
-                        <p class="stars">★★★★★</p>
-                        <p class="card-desc">"Noticed a real difference in FPS and load times within minutes of the tweaks finishing."</p>
-                        <p class="reviewer">— Alex R.</p>
-                    </article>
-                    <article class="card reveal">
-                        <p class="stars">★★★★★</p>
-                        <p class="card-desc">"My PC felt brand new again. Fast, simple, and explained clearly the whole way."</p>
-                        <p class="reviewer">— Jordan M.</p>
-                    </article>
-                    <article class="card reveal">
-                        <p class="stars">★★★★★</p>
-                        <p class="card-desc">"Great communication and the Discord setup looks incredibly clean and professional."</p>
-                        <p class="reviewer">— Sam T.</p>
-                    </article>
-                </div>
-            </section>
-
-            <!-- ─────────────────────────────────
-                 PACKAGES — Win10 / Win11 toggle
-            ──────────────────────────────────── -->
-            <section id="packages" class="section zoom-section">
-                <div class="section-head reveal">
-                    <p class="eyebrow">[ 03 // PACKAGES ]</p>
-                    <h2>Windows Optimization Packages</h2>
-                    <p class="section-sub">Pricing tailored to your operating system.</p>
-                </div>
-
-                <div class="os-toggle reveal" role="tablist" aria-label="Choose your Windows version">
-                    <button class="os-btn active" data-os="win10" role="tab" aria-selected="true">Windows 10</button>
-                    <button class="os-btn"        data-os="win11" role="tab" aria-selected="false">Windows 11</button>
-                </div>
-
-                <div class="os-panel active" data-panel="win10">
-                    <div class="card-grid">
-                        <article class="card reveal">
-                            <h3>Windows 10 — Basic</h3>
-                            <p class="price"><span>$15</span><small>one-time</small></p>
-                            <p class="card-desc">Core performance and debloat tweaks suited to Windows 10.</p>
-                        </article>
-                        <article class="card card-featured reveal">
-                            <p class="badge">Best Value</p>
-                            <h3>Windows 10 — Premium</h3>
-                            <p class="price"><span>$35</span><small>one-time</small></p>
-                            <p class="card-desc">Deep system, gaming, and network optimization for Windows 10.</p>
-                        </article>
-                    </div>
-                </div>
-                <div class="os-panel" data-panel="win11">
-                    <div class="card-grid">
-                        <article class="card reveal">
-                            <h3>Windows 11 — Basic</h3>
-                            <p class="price"><span>$18</span><small>one-time</small></p>
-                            <p class="card-desc">Core performance and debloat tweaks adapted for Windows 11.</p>
-                        </article>
-                        <article class="card card-featured reveal">
-                            <p class="badge">Best Value</p>
-                            <h3>Windows 11 — Premium</h3>
-                            <p class="price"><span>$40</span><small>one-time</small></p>
-                            <p class="card-desc">Deep system, gaming, and network optimization for Windows 11.</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ─────────────────────────────────
-                 FAQ
-            ──────────────────────────────────── -->
-            <section id="faq" class="section zoom-section">
-                <div class="section-head reveal">
-                    <p class="eyebrow">[ 04 // FAQ ]</p>
-                    <h2>Frequently Asked Questions</h2>
-                </div>
-                <div class="faq-list reveal">
-                    <details class="faq-item">
-                        <summary>Are the optimizations safe?</summary>
-                        <p>Yes. A restore point is recommended before starting, and every tweak is designed to be safe and reversible.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Do you provide support after purchase?</summary>
-                        <p>Yes, support is available after purchase if you have any questions or run into issues.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>What's the difference between Windows 10 and Windows 11 packages?</summary>
-                        <p>Each package is tuned for the specific settings and quirks of that OS — so you get optimizations that are actually relevant to your setup.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>How long does the process take?</summary>
-                        <p>Most optimizations complete within 30–60 minutes, depending on the package and your system.</p>
-                    </details>
-                </div>
-            </section>
-
-        </main>
-
-        <!-- ─────────────────────────────────
-             FOOTER / CONTACT
-             Shows Discord, YouTube, Email
-        ──────────────────────────────────── -->
-        <footer id="contact" class="footer zoom-section">
-            <div class="footer-inner reveal">
-                <a href="#home" class="logo">PH4NTOM<span class="cursor">_</span></a>
-                <p class="footer-tagline">Ready to optimize? Reach out on any channel.</p>
-
-                <!-- Social / contact links -->
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <!-- Discord icon -->
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
-                            <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.037.057a19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/>
-                        </svg>
-                        Discord
-                    </a>
-
-                    <a href="#" class="social-link">
-                        <!-- YouTube icon -->
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
-                            <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                        YouTube
-                    </a>
-
-                    <a href="mailto:phantom@ph4ntom.gg" class="social-link">
-                        <!-- Email icon -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
-                            <rect x="2" y="4" width="20" height="16" rx="2"/>
-                            <path d="M2 7l10 7 10-7"/>
-                        </svg>
-                        Email
-                    </a>
-                </div>
-
-                <p class="footer-copy">© 2026 PH4NTOM Optimizations. All Rights Reserved.</p>
-            </div>
-        </footer>
-
-    </div><!-- end #pageWrapper -->
-
-
-    <!-- ─────────────────────────────────
-         SERVICE DETAILS MODAL
-    ──────────────────────────────────── -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-            <p class="eyebrow" id="modalEyebrow">[ SERVICE ]</p>
-            <h3 class="modal-title" id="modalTitle">Service</h3>
-            <p class="modal-desc"  id="modalDesc">Description.</p>
-            <div class="tier-grid" id="modalTiers"></div>
-        </div>
+  <!-- ░░ HERO ░░ -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="hero-badge reveal-up">
+        <span class="badge-dot"></span>
+        PC OPTIMIZATION SERVICES
+      </div>
+      <h1 class="hero-h1 reveal-up" style="--d:.1s">
+        Your PC,<br />
+        <span class="gradient-text">Unleashed.</span>
+      </h1>
+      <p class="hero-p reveal-up" style="--d:.2s">
+        Advanced optimization packages built for higher FPS, lower latency,
+        and a system that finally runs the way it should.
+      </p>
+      <div class="hero-actions reveal-up" style="--d:.3s">
+        <a href="#services" class="btn-primary">View Services <span class="btn-arrow">→</span></a>
+        <a href="#packages" class="btn-ghost">See Pricing</a>
+      </div>
+      <div class="hero-stats reveal-up" style="--d:.4s">
+        <div class="stat"><span class="stat-n" data-target="200">0</span><span class="stat-plus">+</span><p>Clients</p></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n" data-target="40">0</span><span class="stat-plus">%</span><p>Avg FPS Boost</p></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n" data-target="98">0</span><span class="stat-plus">%</span><p>Satisfaction</p></div>
+      </div>
     </div>
+    <div class="hero-visual reveal-right" style="--d:.2s" aria-hidden="true">
+      <div class="hv-card">
+        <div class="hv-top">
+          <div class="hv-dots"><span></span><span></span><span></span></div>
+          <span class="hv-label">SYSTEM MONITOR</span>
+        </div>
+        <div class="hv-rows">
+          <div class="hv-row"><span>CPU Usage</span><div class="hv-bar"><div class="hv-fill" style="--w:28%"></div></div><span class="hv-val">28%</span></div>
+          <div class="hv-row"><span>RAM</span><div class="hv-bar"><div class="hv-fill" style="--w:41%"></div></div><span class="hv-val">41%</span></div>
+          <div class="hv-row"><span>FPS</span><div class="hv-bar hv-bar-fps"><div class="hv-fill hv-fill-fps" style="--w:87%"></div></div><span class="hv-val hv-fps">287</span></div>
+          <div class="hv-row"><span>Latency</span><div class="hv-bar"><div class="hv-fill hv-fill-good" style="--w:12%"></div></div><span class="hv-val">12ms</span></div>
+          <div class="hv-row"><span>Temp</span><div class="hv-bar"><div class="hv-fill hv-fill-warn" style="--w:55%"></div></div><span class="hv-val">55°C</span></div>
+        </div>
+        <div class="hv-foot">
+          <span class="hv-status">● OPTIMIZED</span>
+          <span class="hv-uptime">UPTIME 99.9%</span>
+        </div>
+      </div>
+    </div>
+    <a href="#services" class="scroll-down" aria-label="Scroll">
+      <div class="sd-line"><div class="sd-dot"></div></div>
+    </a>
+  </section>
 
-    <!-- Script -->
-    <script src="script.js"></script>
+  <main>
+
+    <!-- ░░ SERVICES ░░ -->
+    <section id="services" class="section">
+      <div class="sec-head reveal-up">
+        <div class="sec-tag">SERVICES</div>
+        <h2>What We Do</h2>
+        <p class="sec-sub">Click any service to see what's included and pricing.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <article class="svc-card reveal-up" style="--d:.0s" data-svc="windows" tabindex="0" role="button">
+          <div class="svc-glow"></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 40 40" fill="none"><rect x="4" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="22" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="4" y="22" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="22" y="22" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Windows Optimization</h3>
+          <p>Faster boot, smoother gaming, registry tuning, debloat — your OS rebuilt for performance.</p>
+          <span class="svc-link">View Details <span>→</span></span>
+        </article>
+
+        <article class="svc-card reveal-up" style="--d:.08s" data-svc="discord" tabindex="0" role="button">
+          <div class="svc-glow"></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M28 8c0 0-3.5-3-8-3S12 8 12 8C9 9.5 7 13 7 17c0 5.5 4 10 4 10l2-2s2 2 7 2 7-2 7-2l2 2s4-4.5 4-10c0-4-2-7.5-5-9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="15" cy="18" r="2" fill="currentColor"/><circle cx="25" cy="18" r="2" fill="currentColor"/></svg>
+          </div>
+          <h3>Discord Setup</h3>
+          <p>Channels, roles, bots, permissions — a professional server built for your community.</p>
+          <span class="svc-link">View Details <span>→</span></span>
+        </article>
+
+        <article class="svc-card reveal-up" style="--d:.16s" data-svc="game" tabindex="0" role="button">
+          <div class="svc-glow"></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M12 14h16a6 6 0 016 6v4a5 5 0 01-9 3l-1-1.3A4 4 0 0020 24h0a4 4 0 00-3 1.7l-1 1.3A5 5 0 016 24v-4a6 6 0 016-6z" stroke="currentColor" stroke-width="1.5"/><path d="M12 19v4M10 21h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="27" cy="19" r="1" fill="currentColor"/><circle cx="30" cy="22" r="1" fill="currentColor"/></svg>
+          </div>
+          <h3>Game Tuning</h3>
+          <p>Per-game settings, driver optimization, and latency reduction for competitive play.</p>
+          <span class="svc-link">View Details <span>→</span></span>
+        </article>
+
+        <article class="svc-card reveal-up" style="--d:.24s" data-svc="diag" tabindex="0" role="button">
+          <div class="svc-glow"></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 40 40" fill="none"><rect x="5" y="7" width="30" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M15 33h10M20 27v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 19l4 4 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>PC Diagnostics</h3>
+          <p>Full health check — hardware, drivers, thermals, and software all verified and fixed.</p>
+          <span class="svc-link">View Details <span>→</span></span>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ░░ PACKAGES ░░ -->
+    <section id="packages" class="section">
+      <div class="sec-head reveal-up">
+        <div class="sec-tag">PRICING</div>
+        <h2>Optimization Packages</h2>
+        <p class="sec-sub">One-time payment. No subscriptions. Pick your OS.</p>
+      </div>
+
+      <div class="os-tabs reveal-up" role="tablist">
+        <button class="os-tab active" data-tab="win10" role="tab" aria-selected="true">Windows 10</button>
+        <button class="os-tab" data-tab="win11" role="tab" aria-selected="false">Windows 11</button>
+      </div>
+
+      <div class="pkg-panels">
+        <div class="pkg-panel active" data-panel="win10">
+          <div class="pkg-grid">
+            <div class="pkg-card reveal-up">
+              <div class="pkg-top">
+                <h3>Basic</h3>
+                <p>Essential performance cleanup</p>
+              </div>
+              <div class="pkg-price">
+                <span class="price-usd">$10</span>
+                <span class="price-pkr">· 2,000 PKR</span>
+              </div>
+              <ul class="pkg-list">
+                <li>Startup & background cleanup</li>
+                <li>Driver update check</li>
+                <li>Storage debloat</li>
+                <li>Privacy tweaks</li>
+                <li>Windows Update fix</li>
+              </ul>
+              <a href="#contact" class="btn-pkg-outline">Get Basic</a>
+            </div>
+            <div class="pkg-card pkg-featured reveal-up" style="--d:.1s">
+              <div class="pkg-badge">MOST POPULAR</div>
+              <div class="pkg-top">
+                <h3>Premium</h3>
+                <p>Full competitive optimization</p>
+              </div>
+              <div class="pkg-price">
+                <span class="price-usd">$20</span>
+                <span class="price-pkr">· 5,000 PKR</span>
+              </div>
+              <ul class="pkg-list">
+                <li>Everything in Basic</li>
+                <li>Registry & service tuning</li>
+                <li>Gaming power profile</li>
+                <li>Network latency tweaks</li>
+                <li>GPU driver optimization</li>
+                <li>Custom performance config</li>
+              </ul>
+              <a href="#contact" class="btn-pkg-primary">Get Premium</a>
+            </div>
+          </div>
+        </div>
+        <div class="pkg-panel" data-panel="win11">
+          <div class="pkg-grid">
+            <div class="pkg-card reveal-up">
+              <div class="pkg-top">
+                <h3>Basic</h3>
+                <p>Essential performance cleanup</p>
+              </div>
+              <div class="pkg-price">
+                <span class="price-usd">$12</span>
+                <span class="price-pkr">· 2,500 PKR</span>
+              </div>
+              <ul class="pkg-list">
+                <li>Win 11 bloat removal</li>
+                <li>Startup optimization</li>
+                <li>Driver update check</li>
+                <li>Privacy & telemetry fix</li>
+                <li>Storage cleanup</li>
+              </ul>
+              <a href="#contact" class="btn-pkg-outline">Get Basic</a>
+            </div>
+            <div class="pkg-card pkg-featured reveal-up" style="--d:.1s">
+              <div class="pkg-badge">MOST POPULAR</div>
+              <div class="pkg-top">
+                <h3>Premium</h3>
+                <p>Full competitive optimization</p>
+              </div>
+              <div class="pkg-price">
+                <span class="price-usd">$25</span>
+                <span class="price-pkr">· 6,000 PKR</span>
+              </div>
+              <ul class="pkg-list">
+                <li>Everything in Basic</li>
+                <li>Win 11 registry deep tune</li>
+                <li>Gaming power profile</li>
+                <li>Network latency tweaks</li>
+                <li>GPU driver optimization</li>
+                <li>Custom performance config</li>
+              </ul>
+              <a href="#contact" class="btn-pkg-primary">Get Premium</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ REVIEWS ░░ -->
+    <section id="reviews" class="section">
+      <div class="sec-head reveal-up">
+        <div class="sec-tag">REVIEWS</div>
+        <h2>What Clients Say</h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="rev-card reveal-up" style="--d:0s">
+          <div class="rev-stars">★★★★★</div>
+          <p>"Noticed a real difference in FPS and load times within minutes. Went from 140 to 230 FPS in Warzone."</p>
+          <div class="rev-author"><div class="rev-av">AR</div><div><strong>Alex R.</strong><span>Windows 10 Premium</span></div></div>
+        </div>
+        <div class="rev-card reveal-up" style="--d:.1s">
+          <div class="rev-stars">★★★★★</div>
+          <p>"My PC felt brand new. Boot time dropped from 45 seconds to under 10. Totally worth every rupee."</p>
+          <div class="rev-author"><div class="rev-av">JM</div><div><strong>Jordan M.</strong><span>Windows 11 Premium</span></div></div>
+        </div>
+        <div class="rev-card reveal-up" style="--d:.2s">
+          <div class="rev-stars">★★★★★</div>
+          <p>"The Discord server setup is clean and professional. The whole process was smooth and quick."</p>
+          <div class="rev-author"><div class="rev-av">ST</div><div><strong>Sam T.</strong><span>Discord Setup</span></div></div>
+        </div>
+        <div class="rev-card reveal-up" style="--d:.3s">
+          <div class="rev-stars">★★★★★</div>
+          <p>"Ping dropped from 60ms to under 20ms after the network tweaks. Game changer for ranked."</p>
+          <div class="rev-author"><div class="rev-av">MK</div><div><strong>M. Khan</strong><span>Game Tuning</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ FAQ ░░ -->
+    <section id="faq" class="section">
+      <div class="sec-head reveal-up">
+        <div class="sec-tag">FAQ</div>
+        <h2>Common Questions</h2>
+      </div>
+      <div class="faq-wrap reveal-up">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Are the optimizations safe?</button>
+          <div class="faq-a"><p>Yes. We create a restore point before starting, so everything is fully reversible. All tweaks are tested and non-destructive.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How long does it take?</button>
+          <div class="faq-a"><p>Most sessions are done in 30–60 minutes depending on your system and the package.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Do I need to be present during the session?</button>
+          <div class="faq-a"><p>You just need to be available to give remote access at the start. After that you can step away — we'll ping you when it's done.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What's the difference between Win 10 and Win 11 packages?</button>
+          <div class="faq-a"><p>Each package targets OS-specific settings, bloat, and services. Windows 11 has additional telemetry and UI overhead that requires different tweaks.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Do you offer support after purchase?</button>
+          <div class="faq-a"><p>Yes — support is available via Discord after every purchase. If something feels off within 48 hours, reach out and we'll fix it.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ CTA ░░ -->
+    <section id="contact" class="section cta-section">
+      <div class="cta-box reveal-up">
+        <div class="cta-glow"></div>
+        <div class="sec-tag">GET STARTED</div>
+        <h2>Ready to Unlock Your PC?</h2>
+        <p>Reach out on Discord or email and we'll get you booked within the hour.</p>
+        <div class="cta-actions">
+          <a href="#" class="btn-primary">Join Discord <span class="btn-arrow">→</span></a>
+          <a href="mailto:your@email.com" class="btn-ghost">Send Email</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="#home" class="logo"><span class="logo-ph">PH4NTOM</span><span class="logo-cursor">_</span></a>
+      <p>Professional PC optimization for gamers and enthusiasts.</p>
+      <p class="footer-copy">© 2026 PH4NTOM Optimizations. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ░░ SERVICE MODAL ░░ -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="sec-tag" id="modalTag"></div>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+      <div class="modal-tiers" id="modalTiers"></div>
+      <a href="#contact" class="btn-primary modal-cta" id="modalCTA">Get Started →</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
+HTMLEOF
+echo "index.html written"
+Output
+
+index.html written
