@@ -1,308 +1,384 @@
-/* ============================================================
-   FILE 3 — script.js
-   PH4NTOM Optimizations — Scripts
-   ============================================================ */
+/* ==========================================================
+   PH4NTOM Optimizations
+   script.js
+========================================================== */
 
+// Navbar blur
+const nav = document.getElementById("nav");
 
-/* ────────────────────────────────────────
-   ELEMENT REFERENCES  (declared up-top so
-   every block below can use them freely)
-──────────────────────────────────────── */
-const intro       = document.getElementById('intro');
-const hero        = document.querySelector('.hero');
-const pageWrapper = document.getElementById('pageWrapper');
-const navToggle   = document.getElementById('navToggle');
-const navLinks    = document.getElementById('navLinks');
-
-const modalOverlay = document.getElementById('modalOverlay');
-const modalClose   = document.getElementById('modalClose');
-const modalTitle   = document.getElementById('modalTitle');
-const modalEyebrow = document.getElementById('modalEyebrow');
-const modalDesc    = document.getElementById('modalDesc');
-const modalTiers   = document.getElementById('modalTiers');
-
-
-/* ────────────────────────────────────────
-   INTRO ANIMATION SEQUENCE
-
-   Timeline (matches CSS keyframes):
-     0ms    — "ZOOM" starts scaling up from tiny
-     ~480ms — ZOOM reaches full size
-     ~1630ms— ZOOM begins blasting into camera
-     2400ms — ZOOM animation ends (gone)
-     2500ms — JS hides the overlay
-     2700ms — hero zooms in (in-view class)
-──────────────────────────────────────── */
-setTimeout(() => {
-    // Fade out and hide the intro overlay
-    intro.classList.add('hidden');
-
-    // Trigger the hero zoom-in shortly after intro fades
-    setTimeout(() => {
-        hero.classList.add('in-view');
-
-        // Start the inner-element reveal stagger for the hero too
-        hero.querySelectorAll('.reveal').forEach((el) => {
-            el.classList.add('visible');
-        });
-    }, 200);
-
-}, 2500);
-
-
-/* ────────────────────────────────────────
-   SCROLL ZOOM REVEAL
-
-   Each .zoom-section starts at
-   scale(0.87) opacity(0) in CSS.
-   IntersectionObserver adds .in-view when
-   the section enters the viewport, which
-   CSS transitions to scale(1) opacity(1).
-
-   Hero is excluded — handled above by
-   the intro sequence instead.
-──────────────────────────────────────── */
-const zoomObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-            }
-        });
-    },
-    { threshold: 0.1 }
-);
-
-document.querySelectorAll('.zoom-section').forEach((section) => {
-    if (section !== hero) {           // hero handled by intro timing
-        zoomObserver.observe(section);
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+        nav.classList.add("scrolled");
+    } else {
+        nav.classList.remove("scrolled");
     }
 });
 
 
-/* ────────────────────────────────────────
-   INNER-ELEMENT REVEAL STAGGER
+// Mobile menu
+const burger = document.getElementById("burger");
+const navLinks = document.getElementById("navLinks");
 
-   .reveal elements (section heads, cards)
-   fade + slide up once their section is
-   at least 15% visible.
-──────────────────────────────────────── */
-const revealObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    },
-    { threshold: 0.15 }
-);
+burger?.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
 
-document.querySelectorAll('.reveal').forEach((el) => {
-    // Skip hero reveals — intro sequence handles those
-    if (!hero.contains(el)) {
-        revealObserver.observe(el);
-    }
+    burger.setAttribute(
+        "aria-expanded",
+        navLinks.classList.contains("open")
+    );
+});
+
+// Close menu when clicking link
+document.querySelectorAll(".nl").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+    });
 });
 
 
-/* ────────────────────────────────────────
-   ZOOM-NAV CLICK EFFECT
+// Scroll reveal
+const reveals = document.querySelectorAll(".reveal-up, .reveal-right");
 
-   When any .zoom-nav link is clicked:
-     1. The page wrapper briefly scales up
-        (zoom-flash), giving the feel of
-        "zooming into" the target section.
-     2. After the flash peak (~200ms),
-        smooth-scroll to the target.
-──────────────────────────────────────── */
-document.querySelectorAll('.zoom-nav').forEach((link) => {
-    link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (!href || !href.startsWith('#')) return;
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+    });
+}, {
+    threshold: 0.15
+});
 
-        const target = document.querySelector(href);
-        if (!target) return;
+reveals.forEach(el => observer.observe(el));
+
+
+// Counter animation
+const counters = document.querySelectorAll(".stat-n");
+
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+
+        if (!entry.isIntersecting) return;
+
+        const counter = entry.target;
+        const target = +counter.dataset.target;
+
+        let count = 0;
+
+        const update = () => {
+
+            const increment = Math.ceil(target / 80);
+
+            count += increment;
+
+            if (count > target) count = target;
+
+            counter.textContent = count;
+
+            if (count < target) {
+                requestAnimationFrame(update);
+            }
+        };
+
+        update();
+
+        counterObserver.unobserve(counter);
+
+    });
+}, {
+    threshold: 0.5
+});
+
+counters.forEach(counter => counterObserver.observe(counter));
+
+
+// Windows tabs
+const tabs = document.querySelectorAll(".os-tab");
+const panels = document.querySelectorAll(".pkg-panel");
+
+tabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        tabs.forEach(t => {
+            t.classList.remove("active");
+            t.setAttribute("aria-selected", "false");
+        });
+
+        panels.forEach(panel => {
+            panel.classList.remove("active");
+        });
+
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+
+        document
+            .querySelector(`[data-panel="${tab.dataset.tab}"]`)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// FAQ
+document.querySelectorAll(".faq-item").forEach(item => {
+
+    const button = item.querySelector(".faq-q");
+
+    button.addEventListener("click", () => {
+
+        document.querySelectorAll(".faq-item").forEach(i => {
+
+            if (i !== item) {
+                i.classList.remove("open");
+                i.querySelector(".faq-q")
+                    .setAttribute("aria-expanded", "false");
+            }
+
+        });
+
+        item.classList.toggle("open");
+
+        button.setAttribute(
+            "aria-expanded",
+            item.classList.contains("open")
+        );
+
+    });
+
+});
+
+
+// Modal data
+const serviceData = {
+
+    windows: {
+        tag: "WINDOWS OPTIMIZATION",
+        title: "Windows Optimization",
+        desc: "Performance tuning, debloating, registry tweaks and latency improvements.",
+
+        tiers: `
+        <div class="mtier">
+            <h4>Basic</h4>
+            <div class="mp">$10</div>
+            <span class="mpkr">2,000 PKR</span>
+            <ul>
+                <li>Cleanup</li>
+                <li>Startup optimization</li>
+                <li>Driver checks</li>
+            </ul>
+        </div>
+
+        <div class="mtier featured">
+            <h4>Premium</h4>
+            <div class="mp">$20</div>
+            <span class="mpkr">5,000 PKR</span>
+            <ul>
+                <li>Registry tuning</li>
+                <li>Network tweaks</li>
+                <li>Gaming profile</li>
+                <li>GPU optimization</li>
+            </ul>
+        </div>
+        `
+    },
+
+    discord: {
+        tag: "DISCORD SETUP",
+        title: "Discord Services",
+        desc: "Professional Discord server design and configuration.",
+
+        tiers: `
+        <div class="mtier featured">
+            <h4>Server Setup</h4>
+            <div class="mp">$15</div>
+            <span class="mpkr">4,000 PKR</span>
+            <ul>
+                <li>Roles</li>
+                <li>Channels</li>
+                <li>Bots</li>
+                <li>Permissions</li>
+            </ul>
+        </div>
+        `
+    },
+
+    game: {
+        tag: "GAME TUNING",
+        title: "Game Optimization",
+        desc: "Lower latency and maximize FPS.",
+
+        tiers: `
+        <div class="mtier featured">
+            <h4>Gaming Package</h4>
+            <div class="mp">$10</div>
+            <span class="mpkr">3,000 PKR</span>
+            <ul>
+                <li>FPS tuning</li>
+                <li>GPU settings</li>
+                <li>Latency tweaks</li>
+            </ul>
+        </div>
+        `
+    },
+
+    diag: {
+        tag: "DIAGNOSTICS",
+        title: "PC Diagnostics",
+        desc: "Complete health inspection and troubleshooting.",
+
+        tiers: `
+        <div class="mtier featured">
+            <h4>Diagnostics</h4>
+            <div class="mp">$8</div>
+            <span class="mpkr">2,000 PKR</span>
+            <ul>
+                <li>Hardware check</li>
+                <li>Thermals</li>
+                <li>Drivers</li>
+            </ul>
+        </div>
+        `
+    }
+
+};
+
+
+// Modal
+const overlay = document.getElementById("modalOverlay");
+const closeBtn = document.getElementById("modalClose");
+
+const modalTag = document.getElementById("modalTag");
+const modalTitle = document.getElementById("modalTitle");
+const modalDesc = document.getElementById("modalDesc");
+const modalTiers = document.getElementById("modalTiers");
+
+document.querySelectorAll(".svc-card").forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        const data = serviceData[card.dataset.svc];
+
+        modalTag.textContent = data.tag;
+        modalTitle.textContent = data.title;
+        modalDesc.textContent = data.desc;
+        modalTiers.innerHTML = data.tiers;
+
+        overlay.classList.add("open");
+        overlay.setAttribute("aria-hidden", "false");
+
+    });
+
+});
+
+
+function closeModal() {
+
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+
+}
+
+closeBtn.addEventListener("click", closeModal);
+
+overlay.addEventListener("click", e => {
+
+    if (e.target === overlay) {
+        closeModal();
+    }
+
+});
+
+window.addEventListener("keydown", e => {
+
+    if (e.key === "Escape") {
+        closeModal();
+    }
+
+});
+
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+    anchor.addEventListener("click", function (e) {
 
         e.preventDefault();
 
-        // Apply zoom flash to wrapper
-        pageWrapper.classList.add('nav-zooming');
-        pageWrapper.addEventListener('animationend', () => {
-            pageWrapper.classList.remove('nav-zooming');
-        }, { once: true });
+        const target = document.querySelector(
+            this.getAttribute("href")
+        );
 
-        // Scroll after brief delay so flash is visible first
-        setTimeout(() => {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 180);
+        if (target) {
 
-        // Close mobile nav if open
-        navLinks.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-    });
-});
+            target.scrollIntoView({
+                behavior: "smooth"
+            });
 
-
-/* ────────────────────────────────────────
-   ACTIVE NAV LINK HIGHLIGHT
-
-   Watches each section and updates the
-   matching nav link to .active as you
-   scroll through the page.
-──────────────────────────────────────── */
-const sections   = document.querySelectorAll('section[id], header[id], footer[id]');
-const navAnchors = document.querySelectorAll('.nav-link');
-
-const sectionObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navAnchors.forEach((a) => {
-                    a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-                });
-            }
-        });
-    },
-    { rootMargin: '-50% 0px -50% 0px' }
-);
-
-sections.forEach((s) => sectionObserver.observe(s));
-
-
-/* ────────────────────────────────────────
-   MOBILE NAV TOGGLE
-──────────────────────────────────────── */
-navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-});
-
-
-/* ────────────────────────────────────────
-   WINDOWS 10 / 11 PACKAGE TOGGLE
-──────────────────────────────────────── */
-const osButtons = document.querySelectorAll('.os-btn');
-const osPanels  = document.querySelectorAll('.os-panel');
-
-osButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        osButtons.forEach((b) => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-
-        const target = btn.dataset.os;
-        osPanels.forEach((panel) => {
-            panel.classList.toggle('active', panel.dataset.panel === target);
-        });
-    });
-});
-
-
-/* ────────────────────────────────────────
-   SERVICE MODAL
-
-   Data for each service card.
-   Clicking a .service-card opens the modal
-   with that service's content.
-──────────────────────────────────────── */
-const serviceData = {
-    'windows-optimization': {
-        eyebrow: '[ SERVICE // WINDOWS ]',
-        title:   'Windows Optimization',
-        desc:    'Full system tune-up targeting boot speed, gaming performance, background processes, and network latency. Covers registry tweaks, startup management, debloating, driver updates, and power plan configuration.',
-        tiers:   [
-            { name: 'Basic',   price: 'From $15', detail: 'Core debloat and performance tweaks' },
-            { name: 'Premium', price: 'From $35', detail: 'Deep system, gaming, and network optimization' },
-        ]
-    },
-    'discord-setup': {
-        eyebrow: '[ SERVICE // DISCORD ]',
-        title:   'Discord Setup',
-        desc:    'A clean, organized Discord server built from scratch — complete with roles, permission levels, category structure, welcome bots, moderation bots, and a visual style that fits your brand.',
-        tiers:   [
-            { name: 'Basic Server',   price: 'Ask for quote', detail: 'Core structure, roles, and bots' },
-            { name: 'Full Community', price: 'Ask for quote', detail: 'Full brand-matched setup with advanced automation' },
-        ]
-    },
-    'game-tuning': {
-        eyebrow: '[ SERVICE // GAMING ]',
-        title:   'Game Performance Tuning',
-        desc:    'Per-game in-game settings, driver configuration, and system-level tweaks dialed in to squeeze the most FPS and lowest input delay out of your setup for your favorite titles.',
-        tiers:   [
-            { name: 'Single Title', price: 'Ask for quote', detail: 'One game fully optimized' },
-            { name: 'Multi-Title',  price: 'Ask for quote', detail: 'Up to five games tuned and configured' },
-        ]
-    },
-    'pc-diagnostics': {
-        eyebrow: '[ SERVICE // DIAGNOSTICS ]',
-        title:   'PC Diagnostics & Setup',
-        desc:    'Full hardware and software health check. Stress tests, temperature monitoring, driver audit, storage health, RAM verification, and a clean-up of anything slowing your system down.',
-        tiers:   [
-            { name: 'Diagnostic Only', price: 'Ask for quote', detail: 'Full report with recommendations' },
-            { name: 'Diagnose + Fix',  price: 'Ask for quote', detail: 'Full report with hands-on remediation' },
-        ]
-    }
-};
-
-function openModal(serviceKey) {
-    const data = serviceData[serviceKey];
-    if (!data) return;
-
-    modalEyebrow.textContent = data.eyebrow;
-    modalTitle.textContent   = data.title;
-    modalDesc.textContent    = data.desc;
-
-    // Render tier rows
-    modalTiers.innerHTML = data.tiers.map((t) => `
-        <div style="
-            background: var(--smoke-2);
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-        ">
-            <div>
-                <p style="font-family: var(--font-display); font-weight: 600; font-size: 15px;">${t.name}</p>
-                <p style="color: var(--mist); font-size: 13px; margin-top: 4px;">${t.detail}</p>
-            </div>
-            <p style="font-family: var(--font-mono); font-size: 14px; white-space: nowrap;">${t.price}</p>
-        </div>
-    `).join('');
-
-    modalOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-    modalOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-// Open on card click or keyboard Enter / Space
-document.querySelectorAll('.service-card').forEach((card) => {
-    card.addEventListener('click', () => openModal(card.dataset.service));
-    card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            openModal(card.dataset.service);
         }
+
     });
+
 });
 
-// Close modal
-modalClose.addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) closeModal();
-});
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-});
+
+// Particle background
+const canvas = document.getElementById("particles");
+
+if (canvas) {
+
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+    }
+
+    resize();
+
+    window.addEventListener("resize", resize);
+
+    const particles = [];
+
+    for (let i = 0; i < 70; i++) {
+
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 2 + 1,
+            dx: (Math.random() - 0.5) * 0.3,
+            dy: (Math.random() - 0.5) * 0.3
+        });
+
+    }
+
+    function animate() {
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+
+            p.x += p.dx;
+            p.y += p.dy;
+
+            if (p.x < 0 || p.x > canvas.width)
+                p.dx *= -1;
+
+            if (p.y < 0 || p.y > canvas.height)
+                p.dy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+
+            ctx.fillStyle = "rgba(255,255,255,0.15)";
+            ctx.fill();
+
+        });
+
+        requestAnimationFrame(animate);
+
+    }
+
+    animate();
+}
